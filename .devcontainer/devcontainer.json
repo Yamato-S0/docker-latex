@@ -63,7 +63,10 @@
             ]
           }
         ],
-        "latex-workshop.latex.recipe.default": "latexmk (pdflatex)"
+        "latex-workshop.latex.recipe.default": "latexmk (pdflatex)",
+        "editor.defaultFormatter": "James-Yu.latex-workshop",
+        "latex-workshop.formatting.latex": "latexindent",
+        "latex-workshop.linting.chktex.enabled": false // ChktexによるLintを使用したい場合はtrueにする。Chktexは日本語文書には対応していない。
       },
       "extensions": [
         "james-yu.latex-workshop"
