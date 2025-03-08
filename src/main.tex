@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{biblatex}
+\addbibresource{references.bib}
+
+\begin{document}
+
+\section{Introduction}
+Hello, LaTeX!
+
+\section{Including an Image}
+Here is how you include an image:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image}
+    \caption{Example Image}
+    \label{fig:example}
+\end{figure}
+
+\section{Creating a Table}
+Here is how you create a table:
+\begin{table}[h]
+    \caption{Example Table}
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Column 1 & Column 2 & Column 3 \\
+        \hline
+        Data 1   & Data 2   & Data 3   \\
+        Data 4   & Data 5   & Data 6   \\
+        \hline
+    \end{tabular}
+    \label{tab:example}
+\end{table}
+
+\section{Using BibTeX}
+Here is how you include a bibliography:
+This is a citation \cite{example}.
+
+\printbibliography
+
+\end{document}

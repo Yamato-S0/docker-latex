@@ -4,7 +4,7 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "latex-workshop.latex.outDir": "%DIR%/out",
+        "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/out",
         "latex-workshop.latex.tools": [
           {
             "name": "latexmk_pdflatex",
