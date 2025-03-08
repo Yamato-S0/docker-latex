@@ -1,21 +1,64 @@
-# LaTeX DevContainer Template
+# docker-latex
 
-このリポジトリは VSCode + Dev Container を使い、LaTeX 環境を簡単に構築できるテンプレートです。
+Docker + VSCode Dev Container を使って、簡単かつ統一された LaTeX 環境を構築できるテンプレートリポジトリです。  
+**初回だけ Docker イメージをビルド** すれば、2回目以降はビルド不要でいつでも開発を再開できます。
 
-## 使い方
+## 1. テンプレートの利用方法
 
-1. **Docker イメージを事前に準備する**
-   - どこかのリポジトリで用意されている Dockerfile を `docker build -t my-latex-image:latest .` する  
-     もしくは  
-   - `docker pull YOUR-ORG/my-latex-image:latest` (もし Docker Hub / GHCR などに公開済みなら)
-   
-2. **リポジトリをテンプレートから作成**
-   - GitHub ページで “Use this template” → 新しいリポジトリを生成
-   - 生成したリポジトリをローカルに `git clone` する
+### 1.1 テンプレートから新しいリポジトリを作成
 
-3. **VSCode で開き、Dev Container を起動**
-   - `Dev Containers: Reopen in Container` を実行  
-   - すでに `my-latex-image:latest` がローカルにある場合、ビルド不要ですぐにコンテナが起動します！
+1. GitHub 上で本リポジトリ (docker-latex) のページを開く  
+2. 「**Use this template**」ボタンをクリック  
+3. 新しいリポジトリ名を入力 (例: `my-latex-project`) して、Create repository
 
-4. **LaTeX をビルド**
-   - `main.tex` などを編集して、VSCode の LaTeX Workshop からコンパイル or ターミナルで `latexmk -pdf main.tex` 実行
+### 1.2 リポジトリをクローン
+
+ローカルで作業する場合は、次のようにクローンしてください。
+
+```bash
+git clone https://github.com/YOUR-ORG/my-latex-project.git
+cd my-latex-project
+```
+
+## 2. 初回の Docker イメージビルド
+
+1. リポジトリに含まれている .devcontainer/Dockerfile を利用し、以下のコマンドを実行します。
+
+```bash
+docker build -t my-latex-image:latest -f .devcontainer/Dockerfile .
+```
+
+my-latex-image は任意の名前で構いません。
+
+2. ビルドが完了すると、ローカルに統一されたLaTex環境を構築できます。
+
+**※ 2回目以降はビルド不要です。**
+
+## 3. VSCode Dev Container の起動
+
+1. VSCoode でmy-latex-project ディレクトリを開きます。
+2. 左下の「**><**」をクリックし、**Reopen in Container** を選択します。
+3. 初回の起動時は、Docker イメージのビルドが行われます。
+
+## 4. LaTeX の執筆・コンパイル
+
+1. Dev Container 内で main.tex などの LaTeX ファイルを編集します。
+2. 自動コンパイルを使う場合は、LaTeX Workshop の設定により保存時に自動ビルドが走ります。
+3. ビルドエンジンを切り替えたい場合
+   - コマンドパレット (Ctrl + Shift + P) で「**LaTeX Workshop: Build With Recipe**」を選択します。
+   - pdfLatex, platex, lualatex のいずれかを選択できます。
+4. コンパイル結果は out ディレクトリに保存されます。
+
+2回目以降、環境を立ち上げるときは、**docker build** は不要です。
+**Dev Containers** で「**Reopen in Container**」を選択するだけで、いつでも開発を再開できます。
+
+## 5. トラブルシューティング
+
+1. **Docker が起動していない場合**
+   - Docker Desktop などを起動してください。
+2. **LaTeX Workshopの拡張機能が見当たらない場合**
+   - コマンドパレットで Extensions: Show Installed Extensions を選び、James-Yu.latex-workshop が入っているか確認してください。
+   - 入っていなければ一度コンテナを再ビルド (Dev Containers: Rebuild Container) してみてください。
+3. **コンテナのビルドが失敗する場合**
+   - ネットワークの問題や apt-get エラーが考えられます。
+   - Dockerfile を適宜修正して再度 docker build をお試しください。

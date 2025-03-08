@@ -4,7 +4,66 @@
   "customizations": {
     "vscode": {
       "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
+        "latex-workshop.latex.outDir": "%DIR%/out",
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk_pdflatex",
+            "command": "latexmk",
+            "args": [
+              "-pdf",
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ]
+          },
+          {
+            "name": "latexmk_platex",
+            "command": "latexmk",
+            "args": [
+              "-pdfdvi",
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ]
+          },
+          {
+            "name": "latexmk_lualatex",
+            "command": "latexmk",
+            "args": [
+              "-lualatex",
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ]
+          }
+        ],
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk (pdflatex)", // 欧文文書
+            "tools": [
+              "latexmk_pdflatex"
+            ]
+          },
+          {
+            "name": "latexmk (platex)", // 日本語文書
+            "tools": [
+              "latexmk_platex"
+            ]
+          },
+          {
+            "name": "latexmk (lualatex)", // 欧文と日本語文書（コンパイル速度が遅い）
+            "tools": [
+              "latexmk_lualatex"
+            ]
+          }
+        ],
+        "latex-workshop.latex.recipe.default": "latexmk (pdflatex)"
       },
       "extensions": [
         "james-yu.latex-workshop"
