@@ -1,0 +1,15 @@
+{
+  "name": "LaTeX Dev Container",
+  "image": "my-latex-image:latest",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      },
+      "extensions": [
+        "james-yu.latex-workshop"
+      ]
+    }
+  },
+  "remoteUser": "vscode"
+}
